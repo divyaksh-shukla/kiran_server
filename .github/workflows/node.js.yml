@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+    name: Kiran_server.CI
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,4 +24,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Get current time
+      uses: gerred/actions/current-time@master
+      id: current-time
+    - name: Use current time
+      env:
+        TIME: "${{ steps.current-time.outputs.time }}"
+      run: echo $TIME
     - run: npm ci
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Kiran-server.ci.artifact
+        path: artifact/ci/${{ matrix.node-version }}/${{ TIME }}/
