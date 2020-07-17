@@ -36,4 +36,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Kiran-server.ci.artifact
-        path: artifact/ci/${{ matrix.node-version }}/{GITHUB_RUN_ID}
+        path: artifact/ci/${{ matrix.node-version }}/
